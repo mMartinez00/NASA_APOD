@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@100;300;400&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: 100;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: rgb(38, 80, 101);
+  background: linear-gradient(
+    135deg,
+    rgba(38, 80, 101, 1) 40%,
+    rgba(37, 72, 129, 1) 73%
+  );
+  font-family: "Roboto", sans-serif;
+  user-select: none;
+}
+
+.title {
+  text-align: center;
+  padding: 18px 0;
+  font-size: 50px;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.image-container {
+  position: relative;
+  width: 1100px;
+  height: 625px;
+  border-radius: 18px;
+  overflow: hidden;
+  animation: float 4s ease-in-out infinite;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.image-title {
+  position: absolute;
+  top: 25px;
+  left: 250px;
+  padding: 5px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  transform: translateX(-50%);
+  font-size: 24px;
+  border-radius: 12px;
+  color: #fff;
+}
+
+.date {
+  font-size: 14px;
+}
+
+.image-container:hover > .explanation-container {
+  transform: translateY(-100%);
+}
+
+.explanation-container {
+  position: absolute;
+  padding: 18px;
+  border-radius: 5px;
+  transition: transform 0.4s ease-in;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.explanation {
+  line-height: 32px;
+  font-size: 18px;
+  color: #fff;
+}
+
+@keyframes float {
+  0% {
+    box-shadow: 0 14px 20px 10px rgba(0, 0, 0, 0.8);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 38px 25px 10px rgba(0, 0, 0, 0.8);
+    transform: translateY(-8px);
+  }
+  100% {
+    box-shadow: 0 14px 20px 10px rgba(0, 0, 0, 0.8);
+    transform: translateY(0);
+  }
+}
