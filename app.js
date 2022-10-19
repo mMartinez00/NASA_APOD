@@ -11,23 +11,17 @@ const end_date = () => {
   return new Date(Date.now() - dateObj).toISOString().slice(0, 10);
 };
 
-// This Function returns todays date - 5
-const previousFiveDays = (date = new Date()) => {
+// This Function returns current date - 5 YYYY-MM-DD
+const start_date = (date = new Date()) => {
   const previous = new Date(end_date());
   previous.setDate(date.getDate() - 5);
 
-  return previous;
-};
-
-// Format past date YYYY-MM-DD
-const start_date = () => {
-  dateObj = new Date().getTimezoneOffset() * 60000;
-  return new Date(previousFiveDays() - dateObj).toISOString().slice(0, 10);
+  return new Date(previous - dateObj).toISOString().slice(0, 10);
 };
 
 async function fetchPictures() {
   const res = await fetch(
-    `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&start_date=${start_date()}&end_date=${end_date()}`
+    `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&thumbs=true&start_date=${start_date()}&end_date=${end_date()}`
   );
 
   const data = await res.json();
@@ -44,10 +38,11 @@ fetchPictures()
   `)
   );
 
-// Creates an image-container for each element in the array
+// Creates an image-container for each element in the data array
 function createImageContainers(data) {
-  let html = data.map((obj, index) => {
-    const { title, date, hdurl, media_type, explanation, thumbnail_url } = obj;
+  let html = data.map((object, index) => {
+    const { title, date, media_type, explanation, hdurl, thumbnail_url } =
+      object;
 
     const image_container = document.createElement("div");
 
