@@ -1,0 +1,20 @@
+{
+  "name": "nasa_potd",
+  "version": "1.0.0",
+  "description": "Having an interest in astronomy, I created a slideshow with images provided by the [NASA APOD API](https://api.nasa.gov/). This slideshow contains 6 images. Each image contains:",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mMartinez00/NASA_APOD.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mMartinez00/NASA_APOD/issues"
+  },
+  "homepage": "https://github.com/mMartinez00/NASA_APOD#readme"
+}
