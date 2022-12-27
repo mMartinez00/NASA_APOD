@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/mMartinez00/NASA_APOD/issues"
   },
-  "homepage": "https://github.com/mMartinez00/NASA_APOD#readme"
+  "homepage": "https://github.com/mMartinez00/NASA_APOD#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
 }

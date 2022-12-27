@@ -1,28 +1,10 @@
 const container = document.querySelector(".container");
 const left_arrow = document.getElementById("left-arrow");
 const right_arrow = document.getElementById("right-arrow");
-const API_KEY = config.API_KEY;
-let dateObj = new Date();
 let slideIndex = 5;
 
-// This function formats the current date into YYYY-MM-DD
-const end_date = () => {
-  dateObj = new Date().getTimezoneOffset() * 60000;
-  return new Date(Date.now() - dateObj).toISOString().slice(0, 10);
-};
-
-// This Function returns current date - 5 YYYY-MM-DD
-const start_date = (date = new Date()) => {
-  const previous = new Date(end_date());
-  previous.setDate(date.getDate() - 5);
-
-  return new Date(previous - dateObj).toISOString().slice(0, 10);
-};
-
 async function fetchPictures() {
-  const res = await fetch(
-    `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&thumbs=true&start_date=${start_date()}&end_date=${end_date()}`
-  );
+  const res = await fetch("/.netlify/functions/fetch");
 
   const data = await res.json();
 
