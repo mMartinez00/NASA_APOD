@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/mMartinez00/NASA_APOD#readme",
   "dependencies": {
+    "date-and-time": "^2.4.1",
     "node-fetch": "^2.6.7"
   }
 }

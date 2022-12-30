@@ -1,25 +1,22 @@
 const fetch = require("node-fetch");
-let dateObj = new Date();
+const date = require("date-and-time");
 
-// This function formats the current date into YYYY-MM-DD
-const end_date = () => {
-  dateObj = new Date().getTimezoneOffset() * 60000;
-  return new Date(Date.now() - dateObj).toISOString().slice(0, 10);
-};
+const today = new Date();
 
-// This Function returns current date - 5 YYYY-MM-DD
-const start_date = (date = new Date()) => {
+const end_date = date.format(today, "YYYY/MM/DD");
+
+const start_date = () => {
   const previous = new Date(end_date());
-  previous.setDate(date.getDate() - 5);
+  previous.setDate(today.getDate() - 5);
 
-  return new Date(previous - dateObj).toISOString().slice(0, 10);
+  return date.format(previous);
 };
 
 async function fetchPictures() {
   const API_KEY = process.env.NASA_API_KEY;
 
   const res = await fetch(
-    `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&thumbs=true&start_date=${start_date()}&end_date=${end_date()}`
+    `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&thumbs=true&start_date=${start_date()}&end_date=${end_date}`
   );
 
   const data = await res.json();
