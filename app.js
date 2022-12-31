@@ -3,15 +3,6 @@ const left_arrow = document.getElementById("left-arrow");
 const right_arrow = document.getElementById("right-arrow");
 let slideIndex = 5;
 
-const start_date = (date = new Date()) => {
-  const previous = new Date(end_date());
-  previous.setDate(date.getDate() - 5);
-
-  return new Date(previous - dateObj).toISOString().slice(0, 10);
-};
-
-console.log(start_date());
-
 async function fetchPictures() {
   const res = await fetch("/.netlify/functions/fetch");
 
