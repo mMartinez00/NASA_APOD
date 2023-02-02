@@ -1,6 +1,6 @@
-const container = document.querySelector(".container");
-const left_arrow = document.getElementById("left-arrow");
-const right_arrow = document.getElementById("right-arrow");
+const image_container = document.querySelector(".image-container");
+const left_arrow = document.querySelector(".fa-arrow-left");
+const right_arrow = document.querySelector(".fa-arrow-right");
 let slideIndex = 5;
 
 async function fetchPictures() {
@@ -15,25 +15,25 @@ fetchPictures()
   .then((data) => createImageContainers(data))
   .catch(
     () =>
-      (container.innerHTML = `
+      (image_container.innerHTML = `
     <h1 class="error">Error something went wrong! :(</h1>
   `)
   );
 
 // Creates an image-container for each element in the data array
 function createImageContainers(data) {
-  let html = data.map((object, index) => {
+  let images_array = data.map((object, index) => {
     const { title, date, media_type, explanation, hdurl, thumbnail_url } =
       object;
 
-    const image_container = document.createElement("div");
+    const image_content = document.createElement("div");
 
-    if (index === 5) {
-      // Current date index === 5
-      image_container.classList.add("active");
-    }
+    // if (index === 5) {
+    //   // Current date index === 5
+    //   image_container.classList.add("active");
+    // }
 
-    image_container.classList.add("image-container");
+    image_content.classList.add("image-content");
 
     let url = "";
 
@@ -43,7 +43,7 @@ function createImageContainers(data) {
       url += `${thumbnail_url}`;
     }
 
-    image_container.innerHTML = `
+    image_content.innerHTML = `
       <img class="image" src="${url}" alt="${media_type}" />
       <h2 class="image-title">${title}<br /><span class="date">${date}</span></h2>
       <div class="explanation-container">
@@ -51,21 +51,23 @@ function createImageContainers(data) {
       </div>
     `;
 
-    return image_container;
+    return image_content;
   });
 
-  displayPicture(html);
+  displayPicture(images_array);
 }
 
 // Appends the image-container to the container
-function displayPicture(html) {
-  for (let i = 0; i < html.length; i++) {
-    container.appendChild(html[i]);
+function displayPicture(images_array) {
+  images_array[images_array.length - 1].classList.add("active");
+
+  for (let i = 0; i < images_array.length; i++) {
+    image_container.appendChild(images_array[i]);
   }
 
   // Decreases the index - 1. Changes image to past dates
   left_arrow.addEventListener("click", () => {
-    html[slideIndex].classList = "image-container right";
+    images_array[slideIndex].classList = "image-content right";
 
     slideIndex = slideIndex - 1;
 
@@ -73,26 +75,26 @@ function displayPicture(html) {
       left_arrow.style.visibility = "hidden";
     }
 
-    html[slideIndex].className = "image-container active";
+    images_array[slideIndex].className = "image-content active";
 
     right_arrow.style.visibility = "visible";
   });
 
   // Increase index until it reaches 5 (Current date)
   right_arrow.addEventListener("click", () => {
-    html[slideIndex].classList = "image-container left";
+    images_array[slideIndex].classList = "image-content left";
 
     slideIndex = slideIndex + 1;
 
-    if (slideIndex > html.length - 1) {
-      slideIndex = html.length - 1;
+    if (slideIndex > images_array.length - 1) {
+      slideIndex = images_array.length - 1;
     }
 
     if (slideIndex === 5) {
       right_arrow.style.visibility = "hidden";
     }
 
-    html[slideIndex].className = "image-container active";
+    images_array[slideIndex].className = "image-content active";
 
     left_arrow.style.visibility = "visible";
   });

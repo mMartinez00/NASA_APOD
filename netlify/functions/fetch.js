@@ -6,7 +6,7 @@ const today = new Date();
 const end_date = () => date.format(today, "YYYY-MM-DD");
 
 const start_date = () => {
-  const previous = new Date(end_date());
+  const previous = new Date();
   previous.setDate(today.getDate() - 5);
 
   return date.format(previous, "YYYY-MM-DD");
