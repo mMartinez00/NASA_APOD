@@ -22,16 +22,11 @@ fetchPictures()
 
 // Creates an image-container for each element in the data array
 function createImageContainers(data) {
-  let images_array = data.map((object, index) => {
+  let images_array = data.map((object) => {
     const { title, date, media_type, explanation, hdurl, thumbnail_url } =
       object;
 
     const image_content = document.createElement("div");
-
-    // if (index === 5) {
-    //   // Current date index === 5
-    //   image_container.classList.add("active");
-    // }
 
     image_content.classList.add("image-content");
 
