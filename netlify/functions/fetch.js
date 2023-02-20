@@ -1,15 +1,19 @@
 const fetch = require("node-fetch");
 const date = require("date-and-time");
-let today = new Date();
 
-const end_date = () => date.format(today, "YYYY-MM-DD");
+const end_date = () => {
+  let today = new Date();
+  today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+
+  return date.format(today, "YYYY-MM-DD");
+};
 
 const previousFive = () => {
   const previous = new Date();
-  previous.setDate(previous.getDate() - 5);
   previous.setMinutes(previous.getMinutes() - previous.getTimezoneOffset());
+  previous.setDate(previous.getDate() - 5);
 
-  return new Date(previous);
+  return previous;
 };
 
 const start_date = () => date.format(previousFive(), "YYYY-MM-DD");
