@@ -4,7 +4,7 @@
   "description": "Having an interest in astronomy, I created a slideshow with images provided by the [NASA APOD API](https://api.nasa.gov/). This slideshow contains 6 images. Each image contains:",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/mMartinez00/NASA_APOD#readme",
   "dependencies": {
-    "date-and-time": "^2.4.1",
     "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
   }
 }

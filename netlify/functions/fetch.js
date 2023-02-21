@@ -1,22 +1,20 @@
 const fetch = require("node-fetch");
-const date = require("date-and-time");
+let date = new Date();
 
 const end_date = () => {
-  let today = new Date();
-  today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+  date = new Date().getTimezoneOffset() * 60000;
 
-  return date.format(today, "YYYY-MM-DD");
+  return new Date(Date.now() - date).toISOString().slice(0, 10);
 };
 
-const previousFive = () => {
+const start_date = () => {
   const previous = new Date();
-  previous.setMinutes(previous.getMinutes() - previous.getTimezoneOffset());
   previous.setDate(previous.getDate() - 5);
 
-  return previous;
+  return new Date(previous.getTime() - previous.getTimezoneOffset() * 60000)
+    .toISOString()
+    .slice(0, 10);
 };
-
-const start_date = () => date.format(previousFive(), "YYYY-MM-DD");
 
 async function fetchPictures() {
   const API_KEY = process.env.NASA_API_KEY;
