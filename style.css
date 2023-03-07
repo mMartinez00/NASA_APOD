@@ -182,6 +182,10 @@ body {
     font-size: 12px;
   }
 
+  .image {
+    object-fit: fill;
+  }
+
   .explanation-container {
     padding: 10px;
   }
