@@ -1,19 +1,21 @@
 const fetch = require("node-fetch");
 let today = new Date();
 
-const end_date = () => {
-  today.setUTCHours(today.getUTCHours() - today.getTimezoneOffset() / 60);
-
-  return today.toISOString().slice(0, 10);
-};
+const end_date = () =>
+  new Date(
+    today
+      .toLocaleDateString("en-US", { timeZone: "America/New_York" })
+      .slice(0, 8)
+  )
+    .toISOString()
+    .slice(0, 10);
 
 const start_date = () => {
-  let prev = new Date();
-  prev.setUTCHours(prev.getUTCHours() - prev.getTimezoneOffset() / 60);
+  let prev = new Date(end_date());
 
-  prev.setUTCDate(prev.getUTCDate() - 5);
+  prev.setDate(prev.getDate() - 5);
 
-  return prev.toISOString().slice(0, 10);
+  return new Date(prev).toISOString().slice(0, 10);
 };
 
 async function fetchPictures() {
